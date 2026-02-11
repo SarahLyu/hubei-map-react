@@ -2,7 +2,7 @@ import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import React, { useCallback, useMemo, useState } from 'react';
 
-import hubeiGeo from './hubei.js';
+import hubeiGeo from './hubei';
 
 const defaultStyle = {
   label: {
@@ -93,12 +93,13 @@ const HubeiMap: React.FC = () => {
       },
       title: [
         {
-          textStyle: { color: '#000', fontSize: 18 },
-          subtext: '',
+          // show: false,
           text: cityName,
-          top: 'auto',
+          textStyle: { color: '#000', fontSize: 18 },
+          subtext: `${cityName}地图演示`,
           subtextStyle: { color: '#aaa', fontSize: 12 },
-          left: 'auto',
+          top: '20px',
+          left: '20px',
         },
       ],
       legend: [{ selectedMode: 'multiple', top: 'top', orient: 'horizontal', data: [''], left: 'center', show: true }],

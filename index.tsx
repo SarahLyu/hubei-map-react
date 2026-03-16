@@ -67,19 +67,18 @@ const HubeiMap: React.FC = () => {
         triggerOn: 'mousemove|click',
         showDelay: 0,
         hideDelay: 100,
+        // 调试模式：始终显示悬浮窗
+        alwaysShowContent: true,
         // 悬浮窗内容
         formatter: renderTooltip,
-        style: {
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          borderColor: '#1890ff',
-          borderWidth: 1,
-          borderRadius: 4,
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-          color: '#333',
-          fontSize: 12,
-        },
         // 允许鼠标移入悬浮窗（避免误隐藏）
         enterable: true,
+        // 去掉默认样式
+        backgroundColor: 'transparent',
+        padding: 0,
+        borderWidth: 0,
+        boxShadow: 'unset',
+        shadowColor: 'transparent',
         // 悬浮窗居中偏下20px定位
         position: (point: number[], params: any, dom: HTMLElement, _rect: any, size: any) => {
           const cityCenter = params.data?.coord || params.event?.coord || point;
@@ -119,12 +118,13 @@ const HubeiMap: React.FC = () => {
       },
       series: [
         {
-          type: 'scatter',
+          type: 'map',
           geoIndex: 0,
-          coordinateSystem: 'geo',
-          data: [],
-          name: '',
-          symbol: 'circle',
+          data: cityData,
+          // 禁用点击后的选中状态（防止黄色残留）
+          select: {
+            disabled: true,
+          },
         },
       ],
     };

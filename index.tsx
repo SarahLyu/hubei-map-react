@@ -1,6 +1,6 @@
 import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import hubeiGeo from './hubei';
 
@@ -47,7 +47,7 @@ const HubeiMap: React.FC = () => {
   }, []);
 
   // 注册地图
-  useMemo(() => {
+  useEffect(() => {
     echarts.registerMap(cityName, hubeiGeo);
   }, []);
 
